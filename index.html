@@ -1,0 +1,60 @@
+<html>
+<head>
+  <title>GW2 Daily Viewer</title>
+</head>
+<style media="screen">
+  body {
+    width: 600px;
+    margin: 0 auto;
+  }
+</style>
+<body>
+  <h1>PvE Dailies</h1>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+  function getJson() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        iterateDailies(JSON.parse(xhr.responseText));
+      }
+    }
+    xhr.open("GET", "https://api.guildwars2.com/v2/achievements/daily", true);
+    xhr.send();
+  }
+
+  function iterateDailies(dailies) {
+    //console.log(dailies['pve']);
+    for (var i in dailies['pve']) {
+      //console.log(dailies['pve'][i]['id']);
+      getDaily(dailies['pve'][i]['id']);
+    }
+  }
+
+  function getDaily(id) {
+    var xhr2 = new XMLHttpRequest();
+    xhr2.onreadystatechange = function() {
+      if (xhr2.readyState == 4 && xhr2.status == 200) {
+        var achievement = JSON.parse(xhr2.responseText);
+        console.log(id);
+        console.log(achievement);
+        console.log(achievement[0]['name']);
+        console.log(achievement[0]['requirement']);
+        $('body').append('<h4>'+achievement[0]['name']+"</h4>");
+        $('body').append('<h5>'+achievement[0]['requirement']+"</h5>");
+      }
+      //return 0;
+    }
+    xhr2.open("GET", "https://api.guildwars2.com/v2/achievements?ids="+id, true);
+    xhr2.send();
+  }
+
+  getJson();
+  //getDaily(1840);
+</script>
+</body>
+</html>
