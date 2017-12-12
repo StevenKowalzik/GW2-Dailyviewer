@@ -1,9 +1,11 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>GW2 Daily Viewer</title>
-<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700|Open+Sans:300,400,600,700" rel="stylesheet" type="text/css">
 </head>
 <style media="screen">
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans|PT+Serif');
+
   body {
     background-color: #fff;
     width: 600px;
@@ -11,63 +13,35 @@
     font-family: 'PT Serif', sans-serif;
     font-weight: normal;
   }
-  h4, h1 {
+  h2, h1, a, a:visited {
+    color: #333;
     letter-spacing: 0.04rem;
     font-weight: normal;
   }
-  h5 {
-    color: #888;
+  .inhalt {
+    color: #666;
     font-weight: normal;
     letter-spacing: 0.02rem;
   }
+  footer {
+    font-size: 0.85em;
+  }
+
 </style>
 <body>
-  <h1>PvE Dailies</h1>
-<script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-<script type="text/javascript">
-
-  function getJson() {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        iterateDailies(JSON.parse(xhr.responseText));
-      }
-    }
-    xhr.open("GET", "https://api.guildwars2.com/v2/achievements/daily", true);
-    xhr.send();
-  }
-
-  function iterateDailies(dailies) {
-    //console.log(dailies['pve']);
-    for (var i in dailies['pve']) {
-      //console.log(dailies['pve'][i]['id']);
-      getDaily(dailies['pve'][i]['id']);
-    }
-  }
-
-  function getDaily(id) {
-    var xhr2 = new XMLHttpRequest();
-    xhr2.onreadystatechange = function() {
-      if (xhr2.readyState == 4 && xhr2.status == 200) {
-        var achievement = JSON.parse(xhr2.responseText);
-        console.log(id);
-        console.log(achievement);
-        console.log(achievement[0]['name']);
-        console.log(achievement[0]['requirement']);
-        $('body').append('<h4>'+achievement[0]['name']+"</h4>");
-        $('body').append('<h5>'+achievement[0]['requirement']+"</h5>");
-      }
-      //return 0;
-    }
-    xhr2.open("GET", "https://api.guildwars2.com/v2/achievements?ids="+id, true);
-    xhr2.send();
-  }
-
-  getJson();
-  //getDaily(1840);
-</script>
+<header>
+    <h1>Gw2 Dailies</h1>
+</header>
+<main>
+  <div class="inhalt pve"><h2>PvE</h2>  </div>
+  <div class="inhalt pvp"><h2>PvP</h2>  </div>
+  <div class="inhalt wvw"><h2>WvW</h2>  </div>
+  <div class="inhalt fractals"><h2>Fractals</h2>  </div>
+  <div class="inhalt special"><h2>Special</h2>  </div>
+</main>
+<footer>
+  Made by <a href="https://github.com/StevenKowalzik">Steven Kowalzik</a> - <a href="https://github.com/StevenKowalzik/gw2dailyviewer">GitHub Repository</a>
+</footer>
+<script type="text/javascript" src="app.js"></script>
 </body>
 </html>
