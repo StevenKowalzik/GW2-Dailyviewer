@@ -9,3 +9,4 @@ This shows the daily achievements for GuildWars 2
  * WikiLinks?
  * Show Dailies for the Day after
  * Non-ES6 Fallback
+ * Multi-Language
