@@ -6,7 +6,5 @@ This shows the daily achievements for GuildWars 2
 
 # ToDo
  * Better Styling (Layout, Icons)
- * Caching
- * WikiLinks?
  * Show Dailies for the Day after
  * Multi-Language
