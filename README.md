@@ -2,7 +2,7 @@
 
 This shows the daily achievements for GuildWars 2
 
-### Check out at: https://stevenkowalzik.github.io/gw2dailyviewer/
+### Check out at: https://stevenkowalzik.github.io/GW2-Dailyviewer/
 
 # ToDo
  * Better Styling (Layout, Icons)
